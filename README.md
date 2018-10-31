@@ -20,6 +20,18 @@ And you are good to go!
 2. run `mysql -h localhost -u root`
 3. copy the contents of the `sql` file and paste it in the terminal
 
+## Project workflow
+Below is the work flow when working on this project
+
+Every time you open the project
+1. `git pull origin master`
+
+You work on the project (add/change/delete)
+
+
+2. `git add .`
+3. `git commit -m "what have i changed/added/removed"`
+4. `git push origin master`
 
 ## Project structure
 
