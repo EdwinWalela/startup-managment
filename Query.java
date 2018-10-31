@@ -19,13 +19,6 @@ public class Query {
 
     public Query(Connection newConn){ conn = newConn;}
 
-    //Register new User
-    public boolean registerUser(String[]values){
-        String query = "INSERT INTO USERS(USER_ID,USERNAME,STARTUP_ID,EMALL,PASSWORD,ADMIN)";
-        query +="VALUES("+values[0]+",'"+values[1]+"',"+values[2]+",'"+values[3]+"','"+values[4]+"',"+values[5]+")";
-        return (executeQuery(query));
-    }
-
     public boolean executeQuery(String query){
         try{
             stmt = conn.createStatement();
@@ -39,6 +32,13 @@ public class Query {
 
         }
         return  false;
+    }
+
+    //Register new User
+    public boolean registerUser(String[]values){
+        String query = "INSERT INTO USERS(USER_ID,USERNAME,STARTUP_ID,EMALL,PASSWORD,ADMIN)";
+        query +="VALUES("+values[0]+",'"+values[1]+"',"+values[2]+",'"+values[3]+"','"+values[4]+"',"+values[5]+")";
+        return (executeQuery(query));
     }
 
     public ResultSet fetchData(String table, String field){
