@@ -60,6 +60,25 @@ public class AdminPanel{
 }
 ```
 
+#### To test a separate JFrame (i.e UserdashBoard) 
+
+1. Comment out any code present in main except this lines
+
+```java
+ Connection conn = new Configuration().newConnection();
+ Query query = new Query(conn);
+```
+
+2. Create an instance of your class in main
+
+```java
+  Userdashboard userView = new Userdashboard(query);
+```
+3. Ensure your class's constructor expects a `Query newQuery` parameter
+4. Also ensure your class `setVisible` is set to `true`
+
+5. When done testing comment out your class's declaration and uncomment what you commented out in (1.)
+
 ### registerUser
 expects to be called with an array string[6] in the order(USER_ID,USERNAME,STARTUP_ID,EMALL,PASSWORD,ADMIN)
 
