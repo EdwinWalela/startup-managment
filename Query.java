@@ -54,6 +54,26 @@ public class Query {
         return rs;
     }
 
+    public ResultSet fetchData(String table, String field,String where){
+        String query = "SELECT "+field+" FROM "+table.toUpperCase()+" WHERE "+where;
+        System.out.println(query);
+        ResultSet rs =null;
+        try{
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(query);
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return rs;
+    }
+
+    public boolean updateStartup(String[] values,String name){
+        String query = "UPDATE STARTUPS  SET name='"+values[0]+"',domain='"+values[1]+"',email='"+values[2]+"',contact='"+values[3]+"'";
+        query+= " WHERE name ='"+name+"'";
+        System.out.println(query);
+        return executeQuery(query);
+    }
+
     //User Login
     public boolean[] userLogin(String[]values){
         String query = "SELECT * FROM USERS WHERE USER_ID="+values[0]+"";

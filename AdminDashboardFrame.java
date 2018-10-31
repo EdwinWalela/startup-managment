@@ -10,14 +10,15 @@ public class AdminDashboardFrame extends JFrame {
     Query query;
     JPanel navigation = new JPanel();
     JPanel activity = new JPanel();
-    JPanel status = new JPanel();
+
 
     JButton createBtn = new JButton("Register");
     JButton readBtn = new JButton("Search");
     JButton updateBtn = new JButton("Update");
     JButton deleteBtn = new JButton("Delete");
     JButton logoutBtn = new JButton("Logout");
-    JLabel statusIndicator = new JLabel();
+
+
 
     BorderLayout borderLayout = new BorderLayout();
     CardLayout cardLayout = new CardLayout();
@@ -36,20 +37,10 @@ public class AdminDashboardFrame extends JFrame {
         updatePanel = new AdminUpdatePanel(query);
         deletePanel = new AdminDeletePanel(query);
 
-        try{
-            if(!query.conn.isClosed()){
-               statusIndicator.setText("DB connection established (idle)");
-               statusIndicator.setFont(new Font("San-Serif",Font.PLAIN,15));
-               status.setBackground(new Color(1, 163, 55));
-               statusIndicator.setForeground(Color.white);
-            }
-        }catch(SQLException e){
-
-        }
 
         navigation.setPreferredSize(new Dimension(1300, 80));
         activity.setPreferredSize(new Dimension(1300, 600));
-        status.setPreferredSize(new Dimension(1300, 30));
+
 
         navigation.setBorder(new TitledBorder(new LineBorder(Color.lightGray, 1),"Navigation"));
 
@@ -95,7 +86,7 @@ public class AdminDashboardFrame extends JFrame {
 
         borderLayout.setVgap(10);
 
-        status.add(statusIndicator);
+
 
         createBtn.setPreferredSize(new Dimension(150,50));
         readBtn.setPreferredSize(new Dimension(150,50));
@@ -135,7 +126,6 @@ public class AdminDashboardFrame extends JFrame {
         setLayout(borderLayout);
         add(navigation,BorderLayout.NORTH);
         add(activity,BorderLayout.CENTER);
-        add(status,BorderLayout.SOUTH);
         setSize(1300,800);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);

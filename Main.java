@@ -17,7 +17,8 @@ public class Main {
         // Login / Registration goes here
 
 
-        //AdminDashboardFrame adminView = new AdminDashboardFrame(query);
+        AdminDashboardFrame adminView = new AdminDashboardFrame(query);
+
 
     }
 }
