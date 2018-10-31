@@ -18,14 +18,7 @@ public class Main {
         Query query = new Query(conn);
         JFrame frame = new JFrame();
         // Login / Registration goes here
-        ResultSet rs = query.fetchData("users","*");
-        try{
-            while(rs.next()){
-                System.out.println(rs.getString(1));
-            }
-        }catch(SQLException e){
-                System.out.println(e.getMessage());
-        }
+  
         frame.setVisible(true);
 
     }
