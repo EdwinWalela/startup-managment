@@ -18,7 +18,7 @@ public class Main {
         Query query = new Query(conn);
         JFrame frame = new JFrame();
         // Login / Registration goes here
-  
+
         frame.setVisible(true);
 
     }
