@@ -1,0 +1,34 @@
+
+CREATE DATABASE IF NOT EXISTS `startup_mgt` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `startup_mgt`;
+
+CREATE TABLE startups
+(
+  name VARCHAR(255) NOT NULL,
+  founder VARCHAR(255) NOT NULL,
+  doj DATE NOT NULL,
+  domain VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  contact VARCHAR(255) NOT NULL,
+  startup_id INT NOT NULL,
+  PRIMARY KEY (startup_id)
+);
+
+INSERT INTO `startups` (`name`, `founder`, `doj`, `domain`, `email`, `contact`, `startup_id`) VALUES
+('admin', 'admin', '2019-12-11', 'admin', 'admin', '0706496885', 0),
+('afyabora', 'edwin walela', '2019-12-11', 'health-IT', 'edwin@gmail.com', '0700000001', 1);
+
+CREATE TABLE users
+(
+  user_id INT NOT NULL,
+  startup_id INT NOT NULL,
+  username VARCHAR(255) NOT NULL,
+  emall VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  admin INT NOT NULL,
+  PRIMARY KEY (user_id),
+  FOREIGN KEY (startup_id) REFERENCES startups(startup_id)
+);
+
+INSERT INTO `users` (`user_id`, `startup_id`,`username`, `emall`, `password`, `admin`) VALUES
+(10000 , 1 , 'walela', 'edwin@gmail.com', '1234', 1);

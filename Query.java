@@ -55,7 +55,7 @@ public class Query {
     }
 
     //User Login
-    public Boolean[] userLogin(String[]values){
+    public boolean[] userLogin(String[]values){
         String query = "SELECT * FROM USERS WHERE USER_ID="+values[0]+"";
         System.out.println(query);
         ResultSet rs =null;
@@ -78,9 +78,9 @@ public class Query {
 
 
         if(Objects.equals(inputPass,password)){
-            return new Boolean[]{true,admin};
+            return new boolean[]{true,admin};
         }else{
-            return new Boolean[]{false,admin};
+            return new boolean[]{false,admin};
         }
 
     }

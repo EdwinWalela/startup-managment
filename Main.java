@@ -8,6 +8,8 @@
 
 import javax.swing.*;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Main {
 
@@ -15,9 +17,15 @@ public class Main {
         Connection conn = new Configuration().newConnection();
         Query query = new Query(conn);
         JFrame frame = new JFrame();
-
         // Login / Registration goes here
-
+        ResultSet rs = query.fetchData("users","*");
+        try{
+            while(rs.next()){
+                System.out.println(rs.getString(1));
+            }
+        }catch(SQLException e){
+                System.out.println(e.getMessage());
+        }
         frame.setVisible(true);
 
     }

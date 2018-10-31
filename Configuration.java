@@ -9,7 +9,7 @@ public class Configuration
     {
 
         // Connection configuration
-        String DB_URL ="jdbc:mysql://localhost/startup_mg]";
+        String DB_URL ="jdbc:mysql://localhost/startup_mg";
         String USER = "root";
         String PASS = "";
         Connection conn = null;
