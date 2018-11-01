@@ -102,6 +102,7 @@ public class AdminDeletePanel extends JPanel {
                 if(!startupIDcb.getSelectedItem().toString().equals("admin")) {
                     if (query.deleteStartup(startupIDcb.getSelectedItem().toString())) {
                         statusIndicator.setText(startupIDcb.getSelectedItem().toString() + " deletion success");
+                        status.setBackground(new Color(1, 163, 55));
                     } else {
                         statusIndicator.setText("Deletion failed:First delete users in this startup");
                         status.setBackground(new Color(175, 26, 3));
@@ -121,6 +122,8 @@ public class AdminDeletePanel extends JPanel {
                     if(query.deleteUser(userNamecb.getSelectedItem().toString())){
                         statusIndicator.setText(userNamecb.getSelectedItem().toString() + " deletion success");
                         userNamecb.removeItemAt(userNamecb.getSelectedIndex());
+                        status.setBackground(new Color(1, 163, 55));
+
                     }else{
                         statusIndicator.setText("Deletion failed");
                         status.setBackground(new Color(175, 26, 3));
