@@ -14,12 +14,12 @@ import com.mysql.cj.protocol.Resultset;
 
 public class Query {
 
-    Connection conn;
-    Statement stmt = null;
+    public Connection conn;
+    private Statement stmt = null;
 
     public Query(Connection newConn){ conn = newConn;}
 
-    public boolean executeQuery(String query){
+    private boolean executeQuery(String query){
         try{
             stmt = conn.createStatement();
             if(stmt.executeUpdate(query) == 1){
@@ -34,7 +34,6 @@ public class Query {
         return  false;
     }
 
-    //Register new User
     public boolean registerUser(String[]values){
         String query = "INSERT INTO USERS(USER_ID,USERNAME,STARTUP_ID,EMALL,PASSWORD,ADMIN)";
         query +="VALUES("+values[0]+",'"+values[1]+"',"+values[2]+",'"+values[3]+"','"+values[4]+"',"+values[5]+")";
@@ -79,7 +78,13 @@ public class Query {
         System.out.println(query);
         return executeQuery(query);
     }
-    //User Login
+
+    public boolean deleteUser(String name){
+        String query = "DELETE FROM USERS WHERE USERNAME='"+name+"'";
+        System.out.println(query);
+        return executeQuery(query);
+    }
+
     public boolean[] userLogin(String[]values){
         String query = "SELECT * FROM USERS WHERE USER_ID="+values[0]+"";
         System.out.println(query);
@@ -110,7 +115,6 @@ public class Query {
 
     }
 
-    //StartupRegistration
     public boolean startupRegistration(String[]values){
         String query = "INSERT INTO STARTUPS(NAME,FOUNDER,DOJ,DOMAIN,EMAIL,CONTACT,STARTUP_ID)";
         query +="VALUES('"+values[0]+"','"+values[1]+"','"+values[2]+"','"+values[3]+"','"+values[4]+"','"+values[5]+"',"+values[6]+")";
@@ -145,7 +149,5 @@ public class Query {
 
         return  count;
     }
-
-
 
 }

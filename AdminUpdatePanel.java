@@ -92,7 +92,7 @@ public class AdminUpdatePanel extends JPanel {
         try{
             if(!query.conn.isClosed()){
                 statusIndicator.setText("DB connection established (idle)");
-                statusIndicator.setFont(new Font("San-Serif",Font.PLAIN,15));
+                statusIndicator.setFont(new Font("San-Serif",Font.PLAIN,17));
                 status.setBackground(new Color(1, 163, 55));
                 statusIndicator.setForeground(Color.white);
             }

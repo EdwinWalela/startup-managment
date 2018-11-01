@@ -18,7 +18,7 @@ public class Main {
 
 
         // ADMIN DASHBOARD , uncomment to TEXT
-        // AdminDashboardFrame adminView = new AdminDashboardFrame(query);
+        AdminDashboardFrame adminView = new AdminDashboardFrame(query);
 
 
     }

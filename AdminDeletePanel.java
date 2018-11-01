@@ -56,7 +56,7 @@ public class AdminDeletePanel extends JPanel {
         try{
             if(!query.conn.isClosed()){
                 statusIndicator.setText("DB connection established (idle)");
-                statusIndicator.setFont(new Font("San-Serif",Font.PLAIN,15));
+                statusIndicator.setFont(new Font("San-Serif",Font.PLAIN,17));
                 status.setBackground(new Color(1, 163, 55));
                 statusIndicator.setForeground(Color.white);
             }
@@ -103,7 +103,7 @@ public class AdminDeletePanel extends JPanel {
                     if (query.deleteStartup(startupIDcb.getSelectedItem().toString())) {
                         statusIndicator.setText(startupIDcb.getSelectedItem().toString() + " deletion success");
                     } else {
-                        statusIndicator.setText("Deletion failed");
+                        statusIndicator.setText("Deletion failed:First delete users in this startup");
                         status.setBackground(new Color(175, 26, 3));
                     }
                 }else{
@@ -113,6 +113,25 @@ public class AdminDeletePanel extends JPanel {
                 }
             }
         });
+
+        deleteUserBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!userNamecb.getSelectedItem().toString().equals("admin")) {
+                    if(query.deleteUser(userNamecb.getSelectedItem().toString())){
+                        statusIndicator.setText(userNamecb.getSelectedItem().toString() + " deletion success");
+                        userNamecb.removeItemAt(userNamecb.getSelectedIndex());
+                    }else{
+                        statusIndicator.setText("Deletion failed");
+                        status.setBackground(new Color(175, 26, 3));
+                    }
+                }else{
+                    statusIndicator.setText("Admin not deletable");
+                    status.setBackground(new Color(175, 26, 3));
+                }
+            }
+        });
+
 
         setLayout(new BorderLayout());
         add(status,BorderLayout.SOUTH);
