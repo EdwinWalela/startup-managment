@@ -38,7 +38,7 @@ public class AdminDashboardFrame extends JFrame {
         deletePanel = new AdminDeletePanel(query);
 
 
-        navigation.setPreferredSize(new Dimension(1300, 80));
+        navigation.setPreferredSize(new Dimension(1300, 100));
         activity.setPreferredSize(new Dimension(1300, 600));
 
 
@@ -88,11 +88,11 @@ public class AdminDashboardFrame extends JFrame {
 
 
 
-        createBtn.setPreferredSize(new Dimension(150,50));
-        readBtn.setPreferredSize(new Dimension(150,50));
-        updateBtn.setPreferredSize(new Dimension(150,50));
-        deleteBtn.setPreferredSize(new Dimension(150,50));
-        logoutBtn.setPreferredSize(new Dimension(100,50));
+        createBtn.setPreferredSize(new Dimension(200,70));
+        readBtn.setPreferredSize(new Dimension(200,70));
+        updateBtn.setPreferredSize(new Dimension(200,70));
+        deleteBtn.setPreferredSize(new Dimension(200,70));
+        logoutBtn.setPreferredSize(new Dimension(200,70));
 
         createBtn.setFont(new Font(Font.DIALOG,Font.PLAIN,18));
         createBtn.setBackground(new Color(78, 84, 94));
@@ -128,6 +128,7 @@ public class AdminDashboardFrame extends JFrame {
         add(activity,BorderLayout.CENTER);
         setSize(1300,800);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setBackground(Color.white);
         setVisible(true);
         setTitle("Admin Dashboard");
     }

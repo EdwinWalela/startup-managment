@@ -74,6 +74,11 @@ public class Query {
         return executeQuery(query);
     }
 
+    public boolean deleteStartup(String name){
+        String query = "DELETE FROM STARTUPS WHERE NAME='"+name+"'";
+        System.out.println(query);
+        return executeQuery(query);
+    }
     //User Login
     public boolean[] userLogin(String[]values){
         String query = "SELECT * FROM USERS WHERE USER_ID="+values[0]+"";

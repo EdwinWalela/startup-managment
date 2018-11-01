@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class AdminDeletePanel extends JPanel {
     Query query;
-    JComboBox startupIDcb;
+    JComboBox startupIDcb,userNamecb;
 
     JPanel searchBar = new JPanel();
     JPanel resultBar = new JPanel();
@@ -19,12 +19,26 @@ public class AdminDeletePanel extends JPanel {
 
     JLabel statusIndicator = new JLabel();
 
-    JButton updateBtn = new JButton("Delete");
+    JButton deleteBtn = new JButton("Delete Startup");
+    JButton deleteUserBtn = new JButton("Delete User ");
 
     JComboBox fetchStartups(){
 
         ArrayList startupIds = new ArrayList();
         ResultSet rs = query.fetchData("startups","name");
+        try{
+            while(rs.next()){
+                startupIds.add(rs.getString(1));
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return new JComboBox(startupIds.toArray());
+    }
+
+    JComboBox fetchUsers(){
+        ArrayList startupIds = new ArrayList();
+        ResultSet rs = query.fetchData("users","username");
         try{
             while(rs.next()){
                 startupIds.add(rs.getString(1));
@@ -54,29 +68,49 @@ public class AdminDeletePanel extends JPanel {
         status.add(statusIndicator);
 
         startupIDcb = fetchStartups();
+        userNamecb = fetchUsers();
 
         startupIDcb.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
         startupIDcb.setPreferredSize(new Dimension(200,50));
 
+        userNamecb.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
+        userNamecb.setPreferredSize(new Dimension(200,50));
+
         searchBar.setPreferredSize(new Dimension(1300,100));
         searchBar.add(startupIDcb);
+        searchBar.add(userNamecb);
         searchBar.setBorder(new TitledBorder(new LineBorder(Color.lightGray, 1),"Look up a startup"));
 
 
-        updateBtn.setPreferredSize(new Dimension(100,50));
-        updateBtn.setBackground(new Color(175, 26, 3));
-        updateBtn.setForeground(Color.white);
-        updateBtn.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
+        deleteBtn.setBackground(new Color(78, 84, 94));
+        deleteBtn.setForeground(Color.white);
+        deleteBtn.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
 
+        deleteUserBtn.setBackground(new Color(78, 84, 94));
+        deleteUserBtn.setForeground(Color.white);
+        deleteUserBtn.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
+
+        resultBar.setPreferredSize(new Dimension(1300,300));
         resultBar.setLayout(new BorderLayout());
-        resultBar.add(updateBtn,BorderLayout.SOUTH);
+        resultBar.add(deleteBtn,BorderLayout.WEST);
+        resultBar.add(deleteUserBtn,BorderLayout.EAST);
         resultBar.setBorder(new TitledBorder(new LineBorder(Color.lightGray, 1),"Result"));
 
-        updateBtn.addActionListener(new ActionListener() {
+        deleteBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //delete data
-                //updateData(startupIDcb.getSelectedItem().toString());
+                if(!startupIDcb.getSelectedItem().toString().equals("admin")) {
+                    if (query.deleteStartup(startupIDcb.getSelectedItem().toString())) {
+                        statusIndicator.setText(startupIDcb.getSelectedItem().toString() + " deletion success");
+                    } else {
+                        statusIndicator.setText("Deletion failed");
+                        status.setBackground(new Color(175, 26, 3));
+                    }
+                }else{
+                    statusIndicator.setText("Admin not deletable");
+                    status.setBackground(new Color(175, 26, 3));
+
+                }
             }
         });
 

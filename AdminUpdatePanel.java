@@ -57,8 +57,10 @@ public class AdminUpdatePanel extends JPanel {
         ResultSet rs = query.fetchData("startups","*","name = '"+name+"'");
         try{
             while(rs.next()){
+                startupName.setEditable(true);
                 startupId.setText(rs.getString(7));
                 startupName.setText(rs.getString(1));
+                if(startupName.getText().equals("admin")){startupName.setEditable(false);}
                 founder.setText(rs.getString(2));
                 doj.setText(rs.getString(3));
                 domain.setText(rs.getString(4));
@@ -114,6 +116,7 @@ public class AdminUpdatePanel extends JPanel {
         startupId.setEditable(false);
         doj.setEditable(false);
         founder.setEditable(false);
+        domain.setEditable(false);
 
         startupId.setPreferredSize(new Dimension(350,50));
         startupName.setPreferredSize(new Dimension(350,50));
@@ -147,7 +150,7 @@ public class AdminUpdatePanel extends JPanel {
         contactLabel.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
         emailLabel.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
 
-        updateBtn.setPreferredSize(new Dimension(100,50));
+        updateBtn.setPreferredSize(new Dimension(100,80));
         updateBtn.setBackground(new Color(78, 84, 94));
         updateBtn.setForeground(Color.white);
         updateBtn.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
