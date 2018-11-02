@@ -9,7 +9,7 @@ public class details extends javax.swing.JFrame {
         query= newQuery;
     }
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+
     private void initComponents() {
         panel1 = new javax.swing.JPanel();
         login = new javax.swing.JPanel();
@@ -46,9 +46,9 @@ public class details extends javax.swing.JFrame {
 
         panel1.setLayout(new java.awt.CardLayout());
 
-        jLabel13.setText("USERNAME");
+        jLabel13.setText("user ID");
 
-        jLabel14.setText("PASSWORD");
+        jLabel14.setText("password");
 
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton6.setText("SUBMIT");
@@ -171,6 +171,7 @@ public class details extends javax.swing.JFrame {
 
         jLabel1.setText("USER ID");
 
+
         jLabel2.setText("STARTUP ID");
 
         jLabel3.setText("EMAIL");
@@ -282,8 +283,7 @@ public class details extends javax.swing.JFrame {
 
     }
 
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
 
         panel1.removeAll();
         panel1.add(login);
@@ -291,7 +291,7 @@ public class details extends javax.swing.JFrame {
         panel1.revalidate();
     }
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {
 
         panel1.removeAll();
         panel1.add(signup);
@@ -299,17 +299,16 @@ public class details extends javax.swing.JFrame {
         panel1.revalidate();
     }
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {
         System.exit(0);
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }
 
-    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {
         signup.removeAll();
         signup.add(login);
         signup.repaint();
         signup.revalidate();
-    }//GEN-LAST:event_backActionPerformed
+    }
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         // TODO add your handling code here:
@@ -327,11 +326,8 @@ public class details extends javax.swing.JFrame {
     }
 
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        String user="userName";
-        String pass="password";
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {
 
-        // TODO add your handling code here
         String userName=loginUsername.getText();
         String password=loginPassword.getText();
 
@@ -362,7 +358,7 @@ public class details extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+
     private javax.swing.JButton addUser;
     private javax.swing.JTextField admin;
     private javax.swing.JButton back;
