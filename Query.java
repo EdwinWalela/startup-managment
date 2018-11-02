@@ -89,10 +89,11 @@ public class Query {
         Hash newHash = new Hash();
         String query = "SELECT * FROM USERS WHERE USER_ID="+values[0]+"";
         System.out.println(query);
-        ResultSet rs =null;
 
+        ResultSet rs =null;
         String savedPasswordHash="";
         String inputPasswordHash="";
+        Boolean admin=false;
 
         try {
             inputPasswordHash = newHash.sha256(values[1]);
@@ -100,7 +101,6 @@ public class Query {
             System.out.println(e.getCause());
         }
 
-        Boolean admin=false;
         try{
             stmt = conn.createStatement();
             rs = stmt.executeQuery(query);
@@ -113,16 +113,15 @@ public class Query {
                 savedPasswordHash = rs.getString(5);
                 admin = rs.getBoolean(6);
             }
-        }catch(SQLException e){System.out.println(e.getMessage());}
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
 
-
-        if(Objects.equals(inputPasswordHash,savedPasswordHash)){
+        if(inputPasswordHash.equals(savedPasswordHash)){
             return new boolean[]{true,admin};
-            
         }else{
             return new boolean[]{false,admin};
         }
-
     }
 
     public boolean startupRegistration(String[]values){

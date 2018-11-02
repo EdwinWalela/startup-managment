@@ -29,7 +29,6 @@ public class AdminDashboardFrame extends JFrame {
     AdminDeletePanel deletePanel;
 
     AdminDashboardFrame(Query newQuery){
-
         query = newQuery;
 
         createPanel = new AdminCreatePanel(query);
@@ -81,13 +80,15 @@ public class AdminDashboardFrame extends JFrame {
             }
         });
 
-
-
+        logoutBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new details(query).setVisible(true);
+                dispose();
+            }
+        });
 
         borderLayout.setVgap(10);
-
-
-
         createBtn.setPreferredSize(new Dimension(200,70));
         readBtn.setPreferredSize(new Dimension(200,70));
         updateBtn.setPreferredSize(new Dimension(200,70));
@@ -126,11 +127,12 @@ public class AdminDashboardFrame extends JFrame {
         setLayout(borderLayout);
         add(navigation,BorderLayout.NORTH);
         add(activity,BorderLayout.CENTER);
-        setSize(1300,800);
+        setSize(Toolkit.getDefaultToolkit().getScreenSize());
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBackground(Color.white);
         setVisible(true);
         setTitle("Admin Dashboard");
+
     }
 
 }

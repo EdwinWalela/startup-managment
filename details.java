@@ -1,5 +1,6 @@
 
 import javax.swing.JOptionPane;
+import java.awt.*;
 import java.sql.Connection;
 
 public class details extends javax.swing.JFrame {
@@ -7,6 +8,9 @@ public class details extends javax.swing.JFrame {
     public details(Query newQuery) {
         initComponents();
         query= newQuery;
+        // Ensure application is centered on the screen
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
     @SuppressWarnings("unchecked")
 
@@ -330,29 +334,22 @@ public class details extends javax.swing.JFrame {
 
         String userName=loginUsername.getText();
         String password=loginPassword.getText();
+        if(userName.equals("") || password.equals("")){
+            JOptionPane.showMessageDialog(null, "Missing fields");
+        }else {
+            boolean[] result = query.userLogin(new String[]{userName, password});
+            if (result[0]) {
+                if (result[1]) {
+                    new AdminDashboardFrame(query);
+                    setVisible(false);
+                } else {
+                    //NORMAL USER DASHBOARD
+                    setVisible(false);
 
-        boolean[]result=query.userLogin(new String[] {userName, password});
-        if (result[0])
-        {
-            JOptionPane.showMessageDialog(null, "you are matched");
-            if(result[1])
-            {
-               // JOptionPane.showMessageDialog(null, "you are matched", "ADMIN", 1);
-
-                 AdminDashboardFrame adminDashboardFrame = new AdminDashboardFrame(query);
-                setVisible(false);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid Credentials!!!!");
             }
-            else
-            {
-               // JOptionPane.showMessageDialog(null, "you are matched", "USER", 1);
-                  //NORMAL USER DASHBOARD
-                setVisible(false);
-
-            }
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Invalid Credentials!!!!");
         }
 
     }//GEN-LAST:event_jButton6ActionPerformed
