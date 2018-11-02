@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.Objects;
 
 
-import com.mysql.cj.protocol.Resultset;
+//import com.mysql.cj.protocol.Resultset;
 
 public class Query {
 
@@ -99,6 +99,7 @@ public class Query {
 
         if(Objects.equals(inputPass,password)){
             return new boolean[]{true,admin};
+            
         }else{
             return new boolean[]{false,admin};
         }
@@ -140,7 +141,5 @@ public class Query {
 
         return  count;
     }
-
-
-
 }
+
