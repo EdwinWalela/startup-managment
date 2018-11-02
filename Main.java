@@ -17,6 +17,7 @@ public class Main {
         // Login / Registration goes here
 
 
+        // ADMIN DASHBOARD , uncomment to TEXT
         AdminDashboardFrame adminView = new AdminDashboardFrame(query);
 
 
