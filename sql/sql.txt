@@ -30,5 +30,17 @@ CREATE TABLE users
   FOREIGN KEY (startup_id) REFERENCES startups(startup_id)
 );
 
+
+
 INSERT INTO `users` (`user_id`, `startup_id`,`username`, `emall`, `password`, `admin`) VALUES
-(10000 , 1 , 'walela', 'edwin@gmail.com', '1234', 1);
+(10010 , 2 , 'gloria', 'gloria@gmail.com', '7843', 0);
+
+INSERT INTO `users` (`user_id`, `startup_id`,`username`, `emall`, `password`, `admin`) VALUES
+(10011 , 3 , 'samson', 'samson@gmail.com', '9216', 0);
+
+INSERT INTO `users` (`user_id`, `startup_id`,`username`, `emall`, `password`, `admin`) VALUES
+(10012 , 1 , 'lucas', 'lucas@gmail.com', '3489', 0);
+INSERT INTO `users` (`user_id`, `startup_id`,`username`, `emall`, `password`, `admin`) VALUES
+(10013 , 3 , 'larry', 'larry@gmail.com', '8273', 0);
+
+
