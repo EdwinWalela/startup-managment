@@ -10,8 +10,6 @@ import java.sql.Statement;
 import java.util.Objects;
 
 
-import com.mysql.cj.protocol.Resultset;
-
 public class Query {
 
     public Connection conn;

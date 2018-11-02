@@ -10,7 +10,8 @@ import java.util.ArrayList;
 
 public class AdminDeletePanel extends JPanel {
     Query query;
-    JComboBox startupIDcb,userNamecb;
+    JComboBox startupIDcb = new JComboBox();
+    JComboBox userNamecb = new JComboBox();
 
     JPanel searchBar = new JPanel();
     JPanel resultBar = new JPanel();
@@ -36,17 +37,16 @@ public class AdminDeletePanel extends JPanel {
         return new JComboBox(startupIds.toArray());
     }
 
-    JComboBox fetchUsers(){
-        ArrayList startupIds = new ArrayList();
-        ResultSet rs = query.fetchData("users","username");
+    void fetchUsers(){
+        ResultSet rs = query.fetchData("users","username","startup_id="+startupIDcb.getSelectedIndex());
         try{
             while(rs.next()){
-                startupIds.add(rs.getString(1));
+                System.out.println(rs.getString(1));
+                userNamecb.addItem(rs.getString(1));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
-        return new JComboBox(startupIds.toArray());
     }
 
 
@@ -68,7 +68,7 @@ public class AdminDeletePanel extends JPanel {
         status.add(statusIndicator);
 
         startupIDcb = fetchStartups();
-        userNamecb = fetchUsers();
+
 
         startupIDcb.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
         startupIDcb.setPreferredSize(new Dimension(200,50));
@@ -95,6 +95,14 @@ public class AdminDeletePanel extends JPanel {
         resultBar.add(deleteBtn,BorderLayout.WEST);
         resultBar.add(deleteUserBtn,BorderLayout.EAST);
         resultBar.setBorder(new TitledBorder(new LineBorder(Color.lightGray, 1),"Result"));
+
+        startupIDcb.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                userNamecb.removeAllItems();
+                fetchUsers();
+            }
+        });
 
         deleteBtn.addActionListener(new ActionListener() {
             @Override
