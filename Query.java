@@ -10,11 +10,7 @@ import java.sql.Statement;
 import java.util.Objects;
 
 
-<<<<<<< HEAD
-//import com.mysql.cj.protocol.Resultset;
 
-=======
->>>>>>> 478f6c35167f1926f42a8afe4df34688754c26a9
 public class Query {
 
     public Connection conn;
@@ -153,9 +149,5 @@ public class Query {
 
         return  count;
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 478f6c35167f1926f42a8afe4df34688754c26a9
-}
+    }
 

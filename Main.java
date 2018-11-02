@@ -15,7 +15,7 @@ public class Main {
         Query query = new Query(conn);
         //JFrame frame = new JFrame();
         // Login / Registration goes here
-
+        details userLogin = new details(query);
 
         // ADMIN DASHBOARD , uncomment to TEXT
         AdminDashboardFrame adminView = new AdminDashboardFrame(query);
