@@ -163,5 +163,4 @@ public class Query {
 
         return  count;
     }
-    }
-
+}

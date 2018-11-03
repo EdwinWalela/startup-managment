@@ -1,3 +1,21 @@
+Skip to content
+ 
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ @kangatta Sign out
+1
+1 0 EdwinWalela/startup-managment
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights
+startup-managment/details.java
+4172b69  22 hours ago
+@EdwinWalela EdwinWalela admin logout admindashboard fullscreen
+@EdwinWalela @kangatta
+     
+391 lines (341 sloc)  21 KB
 
 import javax.swing.JOptionPane;
 import java.awt.*;
@@ -306,6 +324,34 @@ public class details extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {
         System.exit(0);
     }
+    
+    private void addUserActionPerformed(java.awt.event.ActionEvent evt) 
+    {
+      String usid =user_id.getText();
+        String stid=startup_id.getText();
+        String mail =email.getText();
+        String adm =admin.getText();
+        String user =userName.getText();
+        String pass =password.getText();
+        if(usid.equals("")||stid.equals("")||mail.equals("")|| adm.equals("")|| user.equals("") || pass.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Missing fields");
+        }
+        else
+        {
+                boolean success= query.registerUser(new String[]{usid, stid, mail, adm, user, pass});
+                if
+                (success)
+                {
+                     JOptionPane.showMessageDialog(null, "successfully added");
+                }
+        else
+        {
+             JOptionPane.showMessageDialog(null, "please try again");
+        }
+         }
+       
+    }
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {
         signup.removeAll();
@@ -352,7 +398,7 @@ public class details extends javax.swing.JFrame {
             }
         }
 
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }
 
 
 
