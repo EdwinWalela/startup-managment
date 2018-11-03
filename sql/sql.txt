@@ -30,5 +30,44 @@ CREATE TABLE users
   FOREIGN KEY (startup_id) REFERENCES startups(startup_id)
 );
 
+
 INSERT INTO `users` (`user_id`, `startup_id`,`username`, `emall`, `password`, `admin`) VALUES
-(10000 , 1 , 'walela', 'edwin@gmail.com', '1234', 1);
+(10000 , 0 , 'edwin walela', 'edwin@gmail.com', '39e5b4830d4d9c14db7368a95b65d5463ea3d09520373723430c03a5a453b5df', 1);
+
+INSERT INTO `users` (`user_id`, `startup_id`,`username`, `emall`, `password`, `admin`) VALUES
+(10001 , 0 , 'alex hawi', 'alex@gmail.com', 'e443169117a184f91186b401133b20be670c7c0896f9886075e5d9b81e9d076b', 1);
+
+INSERT INTO `users` (`user_id`, `startup_id`,`username`, `emall`, `password`, `admin`) VALUES
+(10002 , 0 , 'alvin njenga', 'alvin@gmail.com', '56acd2f85500d246e0851f77035f8b4414a57c4f31735c8f37c9cec0f3739d47', 1);
+INSERT INTO `users` (`user_id`, `startup_id`,`username`, `emall`, `password`, `admin`) VALUES
+(10003 , 2 , 'joy kariuki', 'joy@gmail.com', 'e162e30a5a4c1e44a7e04fca063c296001f26636ecf384701ae17849a4f83b11', 0);
+
+INSERT INTO `users` (`user_id`, `startup_id`,`username`, `emall`, `password`, `admin`) VALUES
+(10004 , 3 , 'samson paul', 'samson@gmail.com', '0d9a5484f79ebe89bed064cf5f71ba2575c3e16cb3f135d8c1fd76e1965e5ec7', 0);
+
+INSERT INTO `users` (`user_id`, `startup_id`,`username`, `emall`, `password`, `admin`) VALUES
+(10005 , 1 , 'john peter', 'john@gmail.com', 'a1c5f5584e304e6cf402ea7924ee66c0469679d1dc90486d6524a1aa8ec27b29', 0);
+INSERT INTO `users` (`user_id`, `startup_id`,`username`, `emall`, `password`, `admin`) VALUES
+(10006 , 2 , 'wanjiku pauline', 'wanjiku@gmail.com', 'a6c9b0f863d3c2056830114bb5edc235eb5257268e8c3e2a0aaf4a61c20730e2', 0);
+
+INSERT INTO `users` (`user_id`, `startup_id`,`username`, `emall`, `password`, `admin`) VALUES
+(10007 , 3 , 'ann alice', 'ann@gmail.com', '9dddde7e9531b9f9375090d34d68df60e318871bea5f3129962ab4fee8d33033', 0);
+
+INSERT INTO `users` (`user_id`, `startup_id`,`username`, `emall`, `password`, `admin`) VALUES
+(10008 , 1 , 'atieno abashwili', 'atieno@gmail.com', '39346d4953adbb253889a404644dbec64d75777ce1893192f112f6ce0048d925', 0);
+INSERT INTO `users` (`user_id`, `startup_id`,`username`, `emall`, `password`, `admin`) VALUES
+(10009 , 2 , 'paul conner', 'paul@gmail.com', '53a84293ab3ff273bdda0995aa97b22da014323a3fb42a7290d3eb78f4385314', 0);
+
+INSERT INTO `users` (`user_id`, `startup_id`,`username`, `emall`, `password`, `admin`) VALUES
+(10010 , 3 , 'bonnie spellman', 'bonnie@gmail.com', '24dc9bebea86dd4149d86b7ab672714b2c60b6e76e3f8809133c7f29b5c2d180', 0);
+
+INSERT INTO `users` (`user_id`, `startup_id`,`username`, `emall`, `password`, `admin`) VALUES
+(10011 , 1 , 'brenda lodge', 'brenda@gmail.com', 'ddf3ff7c110ced585a4061e3a3c66f7051fe6847fd4b561f03bbad2b072a9cf0', 0);
+INSERT INTO `users` (`user_id`, `startup_id`,`username`, `emall`, `password`, `admin`) VALUES
+(10012 , 2 , 'makena mbui', 'makena@gmail.com', '3b5d379e599883e88a7b50dcea6090f3b33c8b55df5a34d531468f6acb3b440a', 0);
+
+INSERT INTO `users` (`user_id`, `startup_id`,`username`, `emall`, `password`, `admin`) VALUES
+(10013 , 3 , 'mitchelle samson', 'mitchelle@gmail.com', '5264efea3b4678d5937a9efb8fd5ec64e5761aec6efc642361c8836bb5da12d1', 0);
+
+INSERT INTO `users` (`user_id`, `startup_id`,`username`, `emall`, `password`, `admin`) VALUES
+(10014 , 1 , 'timothy kinkle', 'timothy@gmail.com', '21049fe0067fdec00a7d0cad94e696f579867d832045c87410c2c943d1774eb6', 0);

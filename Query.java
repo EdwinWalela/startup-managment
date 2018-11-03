@@ -3,11 +3,13 @@
 * */
 
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Objects;
+
 
 
 public class Query {
@@ -84,12 +86,21 @@ public class Query {
     }
 
     public boolean[] userLogin(String[]values){
+        Hash newHash = new Hash();
         String query = "SELECT * FROM USERS WHERE USER_ID="+values[0]+"";
         System.out.println(query);
+
         ResultSet rs =null;
-        String inputPass = values[1];
-        String password="";
+        String savedPasswordHash="";
+        String inputPasswordHash="";
         Boolean admin=false;
+
+        try {
+            inputPasswordHash = newHash.sha256(values[1]);
+        }catch (NoSuchAlgorithmException e){
+            System.out.println(e.getCause());
+        }
+
         try{
             stmt = conn.createStatement();
             rs = stmt.executeQuery(query);
@@ -99,19 +110,18 @@ public class Query {
 
         try{
             while(rs.next()) {
-                password = rs.getString(5);
+                savedPasswordHash = rs.getString(5);
                 admin = rs.getBoolean(6);
             }
-        }catch(SQLException e){System.out.println(e.getMessage());}
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
 
-
-        if(Objects.equals(inputPass,password)){
+        if(inputPasswordHash.equals(savedPasswordHash)){
             return new boolean[]{true,admin};
-            
         }else{
             return new boolean[]{false,admin};
         }
-
     }
 
     public boolean startupRegistration(String[]values){
@@ -148,6 +158,4 @@ public class Query {
 
         return  count;
     }
-
 }
-
