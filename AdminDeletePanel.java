@@ -61,7 +61,7 @@ public class AdminDeletePanel extends JPanel {
                 statusIndicator.setForeground(Color.white);
             }
         }catch(SQLException e){
-
+            System.out.println(e.getMessage());
         }
 
         status.setPreferredSize(new Dimension(1300, 30));

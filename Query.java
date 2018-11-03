@@ -35,14 +35,16 @@ public class Query {
     }
 
     public boolean registerUser(String[]values){
-        String passwordHash = values[4];
+        String passwordHash = values[5];
         try{
-            passwordHash = Hash.sha256(values[4]+values[0]);
+            passwordHash = Hash.sha256(values[5]+values[0]);
         }catch (NoSuchAlgorithmException e){
             System.out.println(e.getMessage());
         }
-        String query = "INSERT INTO USERS(USER_ID,USERNAME,STARTUP_ID,EMALL,PASSWORD,ADMIN)";
-        query +="VALUES("+values[0]+",'"+values[1]+"',"+values[2]+",'"+values[3]+"','"+passwordHash+"',"+values[5]+")";
+        String query = "INSERT INTO USERS(USER_ID,STARTUP_ID,EMALL,ADMIN,USERNAME,PASSWORD)";
+                                        //usid, stid, mail, adm, user, pass
+        query +="VALUES("+values[0]+","+values[1]+",'"+values[2]+"',"+values[3]+",'"+values[4]+"','"+passwordHash+"')";
+        System.out.println(query);
         return (executeQuery(query));
     }
 

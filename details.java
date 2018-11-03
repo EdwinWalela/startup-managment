@@ -1,31 +1,26 @@
-Skip to content
- 
-Search or jump to…
 
-Pull requests
-Issues
-Marketplace
-Explore
- @kangatta Sign out
-1
-1 0 EdwinWalela/startup-managment
- Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights
-startup-managment/details.java
-4172b69  22 hours ago
-@EdwinWalela EdwinWalela admin logout admindashboard fullscreen
-@EdwinWalela @kangatta
-     
-391 lines (341 sloc)  21 KB
-
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class details extends javax.swing.JFrame {
     Query query;
     public details(Query newQuery) {
-        initComponents();
         query= newQuery;
+        initComponents();
+        try{
+            if(!query.conn.isClosed()){
+                statusIndicator.setText("DB connection established (idle)");
+                statusIndicator.setFont(new Font("San-Serif",Font.PLAIN,17));
+                statusBar.setBackground(new Color(1, 163, 55));
+                statusIndicator.setForeground(Color.white);
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
         // Ensure application is centered on the screen
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -39,7 +34,11 @@ public class details extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         loginUsername = new javax.swing.JTextField();
+        loginUsername.setPreferredSize(new Dimension(200,40));
+        loginUsername.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
         loginPassword = new javax.swing.JPasswordField();
+        loginPassword.setPreferredSize(new Dimension(200,40));
+        loginPassword.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
         jButton7 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -54,25 +53,45 @@ public class details extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        user_id = new javax.swing.JTextField();
+        user_id = new javax.swing.JTextField(""+(query.tableCount("users")+10000));
+        user_id.setEditable(false);
+        user_id.setPreferredSize(new Dimension(200,40));
+        user_id.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
         startup_id = new javax.swing.JTextField();
+        startup_id.setPreferredSize(new Dimension(200,40));
+        startup_id.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
         email = new javax.swing.JTextField();
+        email.setPreferredSize(new Dimension(200,40));
+        email.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
         admin = new javax.swing.JTextField();
+        admin.setPreferredSize(new Dimension(200,40));
+        admin.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
         userName = new javax.swing.JTextField();
+        userName.setPreferredSize(new Dimension(200,40));
+        userName.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
+        password = new javax.swing.JPasswordField();
+        password.setPreferredSize(new Dimension(200,40));
+        password.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
+
         addUser = new javax.swing.JButton();
         back = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
-        password = new javax.swing.JPasswordField();
+
+        statusIndicator = new JLabel();
+        statusBar = new JPanel();
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panel1.setLayout(new java.awt.CardLayout());
 
         jLabel13.setText("user ID");
-
+        jLabel13.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,17));
         jLabel14.setText("password");
-
-        jButton6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel14.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,17));
+        jButton6.setFont(new java.awt.Font(Font.SANS_SERIF,Font.PLAIN, 18)); // NOI18N
+        jButton6.setBackground(new Color(78, 84, 94));
+        jButton6.setForeground(Color.white);
         jButton6.setText("SUBMIT");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,7 +99,9 @@ public class details extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton7.setFont(new java.awt.Font(Font.SANS_SERIF,Font.PLAIN, 18)); // NOI18N
+        jButton7.setBackground(new Color(78, 84, 94));
+        jButton7.setForeground(Color.white);
         jButton7.setText("EXIT");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,7 +112,9 @@ public class details extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel12.setText("LOGIN");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font(Font.SANS_SERIF,Font.PLAIN, 18)); // NOI18N
+        jButton1.setBackground(new Color(78, 84, 94));
+        jButton1.setForeground(Color.white);
         jButton1.setText("LOGIN");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,7 +122,9 @@ public class details extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton5.setFont(new java.awt.Font(Font.SANS_SERIF,Font.PLAIN, 18)); // NOI18N
+        jButton5.setBackground(new Color(78, 84, 94));
+        jButton5.setForeground(Color.white);
         jButton5.setText("REGISTER");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,20 +215,27 @@ public class details extends javax.swing.JFrame {
         jLabel15.setText(" USER SIGNUP");
 
         jLabel16.setText("PASSWORD");
+        jLabel16.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,17));
 
         jLabel1.setText("USER ID");
-
-
+        jLabel1.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,17));
         jLabel2.setText("STARTUP ID");
-
+        jLabel2.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,17));
         jLabel3.setText("EMAIL");
-
+        jLabel3.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,17));
         jLabel4.setText("ADMIN");
-
+        jLabel4.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,17));
         jLabel6.setText("USERNAME");
-
+        jLabel6.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,17));
         addUser.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         addUser.setText("ADD USER");
+        addUser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addUserActionPerformed(e);
+
+            }
+        });
 
         back.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         back.setText("BACK");
@@ -296,10 +328,11 @@ public class details extends javax.swing.JFrame {
                                 .addGap(75, 75, 75))
         );
 
-        panel1.add(signup, "card2");
-
+        panel1.add(signup);
+        statusBar.add(statusIndicator);
+        add(statusBar,BorderLayout.SOUTH);
         getContentPane().add(panel1, java.awt.BorderLayout.CENTER);
-
+        setSize(new Dimension(530,630));
         pack();
 
 
@@ -327,29 +360,34 @@ public class details extends javax.swing.JFrame {
     
     private void addUserActionPerformed(java.awt.event.ActionEvent evt) 
     {
-      String usid =user_id.getText();
+        statusIndicator.setText("DB connection established (idle)");
+        statusBar.setBackground(new Color(1, 163, 55));
+        String usid =user_id.getText();
         String stid=startup_id.getText();
         String mail =email.getText();
         String adm =admin.getText();
         String user =userName.getText();
         String pass =password.getText();
-        if(usid.equals("")||stid.equals("")||mail.equals("")|| adm.equals("")|| user.equals("") || pass.equals(""))
-        {
-            JOptionPane.showMessageDialog(null, "Missing fields");
+        if(usid.equals("")||stid.equals("")||mail.equals("")|| adm.equals("")|| user.equals("") || pass.equals("")){
+            statusIndicator.setText("Missing Fields");
+            statusBar.setBackground(new Color(175, 26, 3));
+        }else{
+            boolean success= query.registerUser(new String[]{usid, stid, mail, adm, user, pass});
+            if(success){
+                statusIndicator.setText("User Registration Success");
+                statusBar.setBackground(new Color(1, 163, 55));
+                user_id.setText(""+(query.tableCount("users")+10001));
+                startup_id.setText("");
+                email.setText("");
+                admin.setText("");
+                userName.setText("");
+                password.setText("");;
+            }
+        else{
+                statusIndicator.setText("Server Error");
+                statusBar.setBackground(new Color(175, 26, 3));
+            }
         }
-        else
-        {
-                boolean success= query.registerUser(new String[]{usid, stid, mail, adm, user, pass});
-                if
-                (success)
-                {
-                     JOptionPane.showMessageDialog(null, "successfully added");
-                }
-        else
-        {
-             JOptionPane.showMessageDialog(null, "please try again");
-        }
-         }
        
     }
 
@@ -377,11 +415,13 @@ public class details extends javax.swing.JFrame {
 
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {
-
+        statusIndicator.setText("DB connection established (idle)");
+        statusBar.setBackground(new Color(1, 163, 55));
         String userName=loginUsername.getText();
         String password=loginPassword.getText();
         if(userName.equals("") || password.equals("")){
-            JOptionPane.showMessageDialog(null, "Missing fields");
+            statusIndicator.setText("Missing Fields");
+            statusBar.setBackground(new Color(175, 26, 3));
         }else {
             boolean[] result = query.userLogin(new String[]{userName, password});
             if (result[0]) {
@@ -394,11 +434,13 @@ public class details extends javax.swing.JFrame {
 
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Invalid Credentials!!!!");
+                statusIndicator.setText("Invalid Login Credentials");
+                statusBar.setBackground(new Color(175, 26, 3));
             }
         }
 
     }
+
 
 
 
@@ -423,6 +465,8 @@ public class details extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel statusIndicator;
+    private javax.swing.JPanel statusBar;
     private javax.swing.JPanel login;
     private javax.swing.JPasswordField loginPassword;
     private javax.swing.JTextField loginUsername;
