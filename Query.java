@@ -35,8 +35,14 @@ public class Query {
     }
 
     public boolean registerUser(String[]values){
+        String passwordHash = values[4];
+        try{
+            passwordHash = Hash.sha256(values[4]+values[0]);
+        }catch (NoSuchAlgorithmException e){
+            System.out.println(e.getMessage());
+        }
         String query = "INSERT INTO USERS(USER_ID,USERNAME,STARTUP_ID,EMALL,PASSWORD,ADMIN)";
-        query +="VALUES("+values[0]+",'"+values[1]+"',"+values[2]+",'"+values[3]+"','"+values[4]+"',"+values[5]+")";
+        query +="VALUES("+values[0]+",'"+values[1]+"',"+values[2]+",'"+values[3]+"','"+passwordHash+"',"+values[5]+")";
         return (executeQuery(query));
     }
 
@@ -86,7 +92,6 @@ public class Query {
     }
 
     public boolean[] userLogin(String[]values){
-        Hash newHash = new Hash();
         String query = "SELECT * FROM USERS WHERE USER_ID="+values[0]+"";
         System.out.println(query);
 
@@ -96,7 +101,7 @@ public class Query {
         Boolean admin=false;
 
         try {
-            inputPasswordHash = newHash.sha256(values[1]);
+            inputPasswordHash = Hash.sha256(values[1]+values[0]);
         }catch (NoSuchAlgorithmException e){
             System.out.println(e.getCause());
         }

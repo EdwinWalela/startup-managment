@@ -126,7 +126,7 @@ public class AdminDeletePanel extends JPanel {
         deleteUserBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!userNamecb.getSelectedItem().toString().equals("admin")) {
+                if(!startupIDcb.getSelectedItem().toString().equals("admin")) {
                     if(query.deleteUser(userNamecb.getSelectedItem().toString())){
                         statusIndicator.setText(userNamecb.getSelectedItem().toString() + " deletion success");
                         userNamecb.removeItemAt(userNamecb.getSelectedIndex());
