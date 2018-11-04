@@ -107,18 +107,23 @@ public class AdminDeletePanel extends JPanel {
         deleteBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!startupIDcb.getSelectedItem().toString().equals("admin")) {
-                    if (query.deleteStartup(startupIDcb.getSelectedItem().toString())) {
-                        statusIndicator.setText(startupIDcb.getSelectedItem().toString() + " deletion success");
-                        status.setBackground(new Color(1, 163, 55));
+                if (!startupIDcb.getSelectedItem().toString().equals("admin")) {
+                    String deleteKey = JOptionPane.showInputDialog(null,"Enter Deletion Key");
+                    if (deleteKey.equals("8374732")) {
+                        if (query.deleteStartup(startupIDcb.getSelectedItem().toString())) {
+                            statusIndicator.setText(startupIDcb.getSelectedItem().toString() + " deletion success");
+                            status.setBackground(new Color(1, 163, 55));
+                        } else {
+                            statusIndicator.setText("Deletion failed:First delete users in this startup");
+                            status.setBackground(new Color(175, 26, 3));
+                        }
                     } else {
-                        statusIndicator.setText("Deletion failed:First delete users in this startup");
+                        statusIndicator.setText("Access Denied: Invalid Deletion Key");
                         status.setBackground(new Color(175, 26, 3));
                     }
-                }else{
+                } else {
                     statusIndicator.setText("Admin not deletable");
                     status.setBackground(new Color(175, 26, 3));
-
                 }
             }
         });
@@ -127,13 +132,19 @@ public class AdminDeletePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(!startupIDcb.getSelectedItem().toString().equals("admin")) {
-                    if(query.deleteUser(userNamecb.getSelectedItem().toString())){
-                        statusIndicator.setText(userNamecb.getSelectedItem().toString() + " deletion success");
-                        userNamecb.removeItemAt(userNamecb.getSelectedIndex());
-                        status.setBackground(new Color(1, 163, 55));
+                    String deleteKey = JOptionPane.showInputDialog(null, "Enter Deletion Key");
+                    if (deleteKey.equals("8374732")) {
+                        if (query.deleteUser(userNamecb.getSelectedItem().toString())) {
+                            statusIndicator.setText(userNamecb.getSelectedItem().toString() + " deletion success");
+                            userNamecb.removeItemAt(userNamecb.getSelectedIndex());
+                            status.setBackground(new Color(1, 163, 55));
 
+                        } else {
+                            statusIndicator.setText("Deletion failed");
+                            status.setBackground(new Color(175, 26, 3));
+                        }
                     }else{
-                        statusIndicator.setText("Deletion failed");
+                        statusIndicator.setText("Access Denied: Invalid Deletion Key");
                         status.setBackground(new Color(175, 26, 3));
                     }
                 }else{

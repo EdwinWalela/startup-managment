@@ -11,16 +11,6 @@ public class details extends javax.swing.JFrame {
     public details(Query newQuery) {
         query= newQuery;
         initComponents();
-        try{
-            if(!query.conn.isClosed()){
-                statusIndicator.setText("DB connection established (idle)");
-                statusIndicator.setFont(new Font("San-Serif",Font.PLAIN,17));
-                statusBar.setBackground(new Color(1, 163, 55));
-                statusIndicator.setForeground(Color.white);
-            }
-        }catch(SQLException e){
-            System.out.println(e.getMessage());
-        }
         // Ensure application is centered on the screen
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -34,10 +24,10 @@ public class details extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         loginUsername = new javax.swing.JTextField();
-        loginUsername.setPreferredSize(new Dimension(200,40));
+        loginUsername.setPreferredSize(new Dimension(300,40));
         loginUsername.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
         loginPassword = new javax.swing.JPasswordField();
-        loginPassword.setPreferredSize(new Dimension(200,40));
+        loginPassword.setPreferredSize(new Dimension(300,40));
         loginPassword.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
         jButton7 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
@@ -75,10 +65,12 @@ public class details extends javax.swing.JFrame {
 
         addUser = new javax.swing.JButton();
         back = new javax.swing.JButton();
-        cancel = new javax.swing.JButton();
 
         statusIndicator = new JLabel();
         statusBar = new JPanel();
+        statusIndicator.setText("DB connection established (idle)");
+        statusIndicator.setForeground(Color.white);
+        statusBar.setBackground(new Color(1, 163, 55));
 
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -245,13 +237,6 @@ public class details extends javax.swing.JFrame {
             }
         });
 
-        cancel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        cancel.setText("CANCEL");
-        cancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout signupLayout = new javax.swing.GroupLayout(signup);
         signup.setLayout(signupLayout);
@@ -283,7 +268,7 @@ public class details extends javax.swing.JFrame {
                                                 .addGroup(signupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                         .addComponent(addUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                         .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(cancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                                        )))
                                 .addGap(28, 28, 28))
         );
         signupLayout.setVerticalGroup(
@@ -312,7 +297,7 @@ public class details extends javax.swing.JFrame {
                                 .addGroup(signupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel3)
                                         .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(cancel))
+                                        )
                                 .addGap(33, 33, 33)
                                 .addGroup(signupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -332,7 +317,7 @@ public class details extends javax.swing.JFrame {
         statusBar.add(statusIndicator);
         add(statusBar,BorderLayout.SOUTH);
         getContentPane().add(panel1, java.awt.BorderLayout.CENTER);
-        setSize(new Dimension(530,630));
+        setPreferredSize(new Dimension(550,630));
         pack();
 
 
@@ -361,6 +346,7 @@ public class details extends javax.swing.JFrame {
     private void addUserActionPerformed(java.awt.event.ActionEvent evt) 
     {
         statusIndicator.setText("DB connection established (idle)");
+        statusIndicator.setForeground(Color.white);
         statusBar.setBackground(new Color(1, 163, 55));
         String usid =user_id.getText();
         String stid=startup_id.getText();
@@ -398,10 +384,6 @@ public class details extends javax.swing.JFrame {
         signup.revalidate();
     }
 
-    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }
 
     public static void main(String args[]) {
         Connection conn = new Configuration().newConnection();
@@ -447,7 +429,6 @@ public class details extends javax.swing.JFrame {
     private javax.swing.JButton addUser;
     private javax.swing.JTextField admin;
     private javax.swing.JButton back;
-    private javax.swing.JButton cancel;
     private javax.swing.JTextField email;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton5;
