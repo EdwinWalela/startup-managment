@@ -9,9 +9,9 @@ public class Configuration
     {
 
         // Connection configuration
-        String DB_URL ="jdbc:mysql://localhost/startup_mgt";
-        String USER = "root";
-        String PASS = "";
+        String DB_URL ="jdbc:mysql://www.db4free.net/startupmgt";
+        String USER = "walela30000";
+        String PASS = "node3000";
         Connection conn = null;
 
         // Attempt to locate JDBC Driver

@@ -4,7 +4,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class details extends javax.swing.JFrame {
     Query query;
@@ -411,7 +413,22 @@ public class details extends javax.swing.JFrame {
                     new AdminDashboardFrame(query);
                     setVisible(false);
                 } else {
-                    //NORMAL USER DASHBOARD
+                    ResultSet rt = query.fetchData("users","*","USER_ID="+loginUsername.getText()+"");
+                    String[] userData = new String[5];
+                    try{
+                        int i = 1;
+                        while(rt.next()){
+                            userData[0]=rt.getString(1);
+                            userData[1]=rt.getString(2);
+                            userData[2]=rt.getString(3);
+                            userData[3]=rt.getString(4);
+                            userData[4]=rt.getString(5);
+                        }
+                    }catch(SQLException e){
+                        System.out.println(e.getMessage());
+                    }
+
+                    new UserUpdatePanel(query,userData);
                     setVisible(false);
 
                 }
@@ -422,9 +439,6 @@ public class details extends javax.swing.JFrame {
         }
 
     }
-
-
-
 
     private javax.swing.JButton addUser;
     private javax.swing.JTextField admin;

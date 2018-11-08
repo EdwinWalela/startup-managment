@@ -7,19 +7,15 @@
 
 
 import java.sql.Connection;
+import javax.swing.*;
+import java.awt.*;
+
 
 public class Main {
 
     public static void main(String[] args) {
         Connection conn = new Configuration().newConnection();
         Query query = new Query(conn);
-        //JFrame frame = new JFrame();
-        // Login / Registration goes here
-        details userLogin = new details(query);
-
-        // ADMIN DASHBOARD , uncomment to TEXT
-        AdminDashboardFrame adminView = new AdminDashboardFrame(query);
-
 
     }
 }

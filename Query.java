@@ -41,15 +41,14 @@ public class Query {
         }catch (NoSuchAlgorithmException e){
             System.out.println(e.getMessage());
         }
-        String query = "INSERT INTO USERS(USER_ID,STARTUP_ID,EMALL,ADMIN,USERNAME,PASSWORD)";
-                                        //usid, stid, mail, adm, user, pass
+        String query = "INSERT INTO users(USER_ID,STARTUP_ID,EMALL,ADMIN,USERNAME,PASSWORD)";
         query +="VALUES("+values[0]+","+values[1]+",'"+values[2]+"',"+values[3]+",'"+values[4]+"','"+passwordHash+"')";
         System.out.println(query);
         return (executeQuery(query));
     }
 
     public ResultSet fetchData(String table, String field){
-        String query = "SELECT "+field+" FROM "+table.toUpperCase()+"";
+        String query = "SELECT "+field+" FROM "+table+"";
         System.out.println(query);
         ResultSet rs =null;
         try{
@@ -62,7 +61,7 @@ public class Query {
     }
 
     public ResultSet fetchData(String table, String field,String where){
-        String query = "SELECT "+field+" FROM "+table.toUpperCase()+" WHERE "+where;
+        String query = "SELECT "+field+" FROM "+table+" WHERE "+where;
         System.out.println(query);
         ResultSet rs =null;
         try{
@@ -88,13 +87,19 @@ public class Query {
     }
 
     public boolean deleteUser(String name){
-        String query = "DELETE FROM USERS WHERE USERNAME='"+name+"'";
+        String query = "DELETE FROM users WHERE USERNAME='"+name+"'";
+        System.out.println(query);
+        return executeQuery(query);
+    }
+
+    public boolean updateUser(String[] data){
+        String query = "UPDATE users SET USERNAME='"+data[0]+"',EMALL='"+data[1]+"'WHERE USER_ID="+data[2];
         System.out.println(query);
         return executeQuery(query);
     }
 
     public boolean[] userLogin(String[]values){
-        String query = "SELECT * FROM USERS WHERE USER_ID="+values[0]+"";
+        String query = "SELECT * FROM users WHERE USER_ID="+values[0]+"";
         System.out.println(query);
 
         ResultSet rs =null;
