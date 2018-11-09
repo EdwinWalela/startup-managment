@@ -74,14 +74,14 @@ public class Query {
     }
 
     public boolean updateStartup(String[] values,String name){
-        String query = "UPDATE STARTUPS  SET name='"+values[0]+"',domain='"+values[1]+"',email='"+values[2]+"',contact='"+values[3]+"'";
+        String query = "UPDATE startups  SET name='"+values[0]+"',domain='"+values[1]+"',email='"+values[2]+"',contact='"+values[3]+"'";
         query+= " WHERE name ='"+name+"'";
         System.out.println(query);
         return executeQuery(query);
     }
 
     public boolean deleteStartup(String name){
-        String query = "DELETE FROM STARTUPS WHERE NAME='"+name+"'";
+        String query = "DELETE FROM startups WHERE NAME='"+name+"'";
         System.out.println(query);
         return executeQuery(query);
     }
@@ -137,7 +137,7 @@ public class Query {
     }
 
     public boolean startupRegistration(String[]values){
-        String query = "INSERT INTO STARTUPS(NAME,FOUNDER,DOJ,DOMAIN,EMAIL,CONTACT,STARTUP_ID)";
+        String query = "INSERT INTO startups(STARTUP_ID,NAME,FOUNDER,DOJ,DOMAIN,EMAIL,CONTACT)";
         query +="VALUES('"+values[0]+"','"+values[1]+"','"+values[2]+"','"+values[3]+"','"+values[4]+"','"+values[5]+"',"+values[6]+")";
        System.out.println(query);
         return (executeQuery(query));

@@ -125,7 +125,6 @@ public class AdminReadPanel extends JPanel
                                              resultTable.setRowHeight(35);
                                              resultTable.setBounds(10, 300, 850, data.length * resultTable.getRowHeight());
                                              resultTable.setFont(new Font("Sans-Serif", Font.PLAIN, 20));
-
                                              add(resultTable);
                                          }
 
@@ -134,15 +133,12 @@ public class AdminReadPanel extends JPanel
                                      }
                                  }
         );
-
+        setLayout(null);
         add(tablelabel); add(table);
         add(criteria1label); add(criteria1);
         add(criteria2label); add(criteria2);
         add(search);
         add(status,BorderLayout.SOUTH);
-        setVisible(true);
-        setLayout(null);
-
     }
 
 }
